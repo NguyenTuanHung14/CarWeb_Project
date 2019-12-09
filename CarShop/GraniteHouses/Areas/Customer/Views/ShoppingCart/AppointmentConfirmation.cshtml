@@ -1,0 +1,20 @@
+﻿@model CarShop.Models.ViewModel.ShoppingCartViewModel
+@{
+    ViewData["Title"] = "AppointmentConfirmation";
+}
+
+
+    <div class="container-fluid-0 m-5" style="padding-top:50px;">
+        <h1>Appointment Confirmation</h1>
+        <div class="form-text">
+            Your appointment has been submitted.One of our awesome Sales Rep would be in touch shortly.Please feel free to contact us anytime you have any question.
+        </div>
+        <br />
+        <partial name="~/Views/Shared/_AppointmentCustomerDetails.cshtml" model="@Model.Appointment">
+            <br />
+            <partial name="~/Views/Shared/_AppointmentProductDetails.cshtml" model="@Model.Products">
+
+                <a asp-area="Customer" asp-controller="HOme" asp-action="Index" class="btn btn-success">Back to Products</a>
+
+    </div>
+    

@@ -1,0 +1,70 @@
+﻿@model IEnumerable<CarShop.Models.BasicInformation>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid-0 m-5" style="padding-top:50px;">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">Index</h2>
+        </div> 
+        <div class=" col-6 text-right">
+            <a asp-action="Create" class="btn btn-info"><i class="far fa-plus-square"></i>&nbsp; New Basic Infomations  </a>
+        </div>
+    </div>
+    
+    <table class="table table-striped boder">
+        <thead>
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(model => model.Source)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InteriorColor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumberOfDoors)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.SeatNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Product)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Source)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InteriorColor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumberOfDoors)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SeatNumber)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        <partial name="_TableButtonPartial" model="item.Id" />
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>

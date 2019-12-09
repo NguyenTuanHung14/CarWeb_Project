@@ -1,0 +1,133 @@
+﻿@page
+@model RegisterModel
+@{
+    ViewData["Title"] = "Register";
+}
+<style>
+    * {
+    margin: 0;
+    paddinsg: 0;
+    box-sizing: border-box;
+}
+.box {
+    width: 350px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    margin-left:20px;
+    top:50%;
+    left:50%;
+    transform:translate(95%,5%);
+    text-align: center;
+    position: absolute;
+    border-radius: 5px;
+    box-shadow: 0px 5px 10px 5px #2e2d2d;
+    /* x, y ,độ mờ, độ phóng rộng ,màu */
+    /* filter:brightness(55%) blur(2px); */
+    /* độ sáng, độ mờ của hình */
+}
+
+    .box input[type="text"], .box input[type="password"] {
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #3498db;
+        padding: 22px 18px;
+        width: 230px;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+    }
+
+    .box h1 {
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .box input[type="text"]:focus, .box input[type="password"]:focus {
+        width: 280px;
+        border-color: #2ecc71;
+    }
+
+    .box input[type="submit"] {
+        position: relative;
+        border: 0;
+        background: none;
+        display: block;
+        margin: 20px auto;
+        text-align: center;
+        border: 2px solid #2ecc71;
+        padding: 12px 40px;
+        cursor: pointer;
+        outline: none;
+        color: white;
+        border-radius: 24px;
+        transition: 0.25s;
+    }
+        .box input[type="submit"]:hover {
+            background: #2ecc71 
+        }
+body.bg-login { 
+    background-image: url(/Image/bg.jpg);
+    background-position:center;
+    background-size:cover;
+}
+body {
+    overflow-x: hidden; 
+}
+
+
+</style>
+<h1>@ViewData["Title"]</h1>
+<div class="container-fluid-0">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-route-returnUrl="@Model.ReturnUrl" method="post" class="box">
+                <h4 class="text-light">CREATE NEW ACCOUNT</h4>
+                <input asp-for="Input.Name" class="form-control" type="text" placeholder="Name" />
+                <span asp-validation-for="Input.Name" class="text-danger"></span>
+
+
+                <input asp-for="Input.PhoneNumber" class="form-control" type="text" placeholder="PhoneNumber" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+
+
+                <input asp-for="Input.Email" class="form-control" type="text" placeholder="Email">
+                <span asp-validation-for="Input.Email" class="text-danger"></span>
+
+
+                <input asp-for="Input.Password" class="form-control" type="password" placeholder="Password" />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                <input asp-for="Input.ConfirmPassword" class="form-control" type="password" placeholder="ConfirmPassword" />
+                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                <div class="form-group">
+                    <label asp-for="Input.IsSuperAdmin" class="text-light"></label>
+                    <input asp-for="Input.IsSuperAdmin" type="checkbox" class="form-control" />
+                </div>
+                <input type="submit" value="Register" name="" />
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+        <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function GetFavColor() {
+            document.body.className = "bg-login";
+        });
+        </script>
+}
+@section Css{
+    <link href="~/css/Login/Style.css" rel="stylesheet" />
+}
+
+
+
+
+

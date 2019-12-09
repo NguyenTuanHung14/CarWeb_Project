@@ -1,0 +1,48 @@
+﻿@model IEnumerable<CarShop.Models.ProductTypes>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="container-fluid-0 m-5" style="padding-top:50px;">
+    <div class="row">
+        <div class="col-6">
+            <h2 class="text-info">
+                Product Types List
+            </h2>
+        </div>
+        <div class=" col-6 text-right">
+            <a asp-action="Create" class="btn btn-info"><i class="far fa-plus-square"></i>&nbsp; New Product Type</a>
+        </div>
+    </div>
+ 
+    <div>
+        <table class="table table-striped boder">
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(m => m.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(m => m.ProductBrand)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(m => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(m => item.ProductBrand.Name)
+                    </td>
+                    <td>
+                        <partial name="_TableButtonPartial" model="item.Id" />
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+</div>
+

@@ -1,0 +1,14 @@
+﻿
+* {
+padding:0%;
+margin:0%;
+box-sizing:border-box;
+}
+.navbar-brand {
+    font-family: 'Pacifico';
+    font-size:35px;
+    color: lightcoral !important;
+}
+.nav-link:hover {
+    color: aqua !important;
+}

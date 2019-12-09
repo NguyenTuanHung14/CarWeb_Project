@@ -1,0 +1,105 @@
+﻿@using Microsoft.AspNetCore.Http;
+@using CarShop.Extensions
+@using CarShop.Utilyti;
+
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CarShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Pacifico" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="~/css/jquery.timepicker.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/css/Layout/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
+          crossorigin="anonymous">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button aria-label="Toggle Menu" class="navbar-toggler" type="button"
+                data-toggle="collapse"
+                data-target="#navbarMenu"
+                aria-controls="navbarMenu"
+                aria-expanded="false"
+                aria-label="Toggle Menu">
+            <span></span>
+        </button>
+
+        <a class="navbar-brand mr-2" style="font-size:25px;" asp-area="Customer" asp-controller="Home" asp-action="Index">  Car:)<span style="color: #00e8e8;">Shop</span> </a>
+        <div class="collapse navbar-collapse" id="navbarMenu">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link active" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+                @if (User.IsInRole(SD.SuperAdminEndUser))
+                {
+                    <li class="nav-item"><a class="nav-link  active" asp-area="Admin" asp-controller="ProductBrand" asp-action="Index">Product Brands</a></li>
+                    <li class="nav-item"><a class="nav-link  active" asp-area="Admin" asp-controller="ProductTypes" asp-action="Index">Product Types</a></li>
+                    <li class="nav-item"><a class="nav-link active" asp-area="Admin" asp-controller="SpectialTags" asp-action="Index">SpectialTags</a></li>
+                    <li class="nav-item"><a class="nav-link  active" asp-area="Admin" asp-controller="Products" asp-action="Index">Products</a></li>
+                    <li class="nav-item"><a class="nav-link  active" asp-area="Admin" asp-controller="Specifications" asp-action="Index">Specifications</a></li>
+                    <li class="nav-item"><a class="nav-link  active" asp-area="Admin" asp-controller="AdminUsers" asp-action="Index">Admin Users</a></li>
+                    <li class="nav-item"><a class="nav-link active" asp-area="Admin" asp-controller="BasicInformations" asp-action="Index">Basic Information</a></li>
+                }
+                @if (User.IsInRole(SD.SuperAdminEndUser) || User.IsInRole(SD.AdminEndUser))
+                {
+                    <li class="nav-item"><a class="nav-link active" asp-area="Admin" asp-controller="Appointments" asp-action="Index">Appointment</a></li>
+                }
+                @if (HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart") != null)
+                {
+                    <li style="color:white">
+                        <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link active">
+                            <i class="fas fa-shopping-cart"></i> &nbsp;
+                            @{
+                                var count = HttpContextAccessor.HttpContext.Session.Get<List<int>>("ssShoppingCart").Count;
+                            }
+                            (@count)
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li style="color:white">
+                        <a asp-area="Customer" asp-controller="ShoppingCart" asp-action="Index" class="nav-link active">
+                            <i class="fas fa-shopping-cart"></i> &nbsp;
+                            (0)
+                        </a>
+
+                    </li>
+                }
+
+            </ul>
+
+        </div>
+        <div>
+            <partial name="_LoginPartial" />
+        </div>
+    </nav>
+
+    <!--Slide-->
+    <div class="container-fluid-0">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="footer-content">
+
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/jquery-ui.js" asp-append-version="true"></script>
+    <script src="~/js/jquery.timepicker.js" asp-append-version="true"></script>
+   
+    @RenderSection("Scripts", required: false)
+    @RenderSection("Css", required: false)
+</body>
+
+</html>

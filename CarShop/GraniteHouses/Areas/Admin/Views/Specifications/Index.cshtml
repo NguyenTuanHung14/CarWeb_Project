@@ -1,0 +1,75 @@
+﻿@model IEnumerable<CarShop.Models.Specification>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container-fluid-0 m-5" style="padding-top:50px;">
+        <div class="row">
+            <div class="col-6">
+                <h2 class="text-info">Specifications</h2>
+            </div>
+            <div class="col-6 text-right">
+                <p>
+                    <a asp-action="Create" class="btn btn-info"><i class="far fa-plus-square"></i>&nbsp; Create New</a>
+                </p>
+            </div>
+        </div>
+
+        <table class="table table-striped border">
+            <thead>
+                <tr class="table-info">
+                    <th>
+                        @Html.DisplayNameFor(model => model.Weight)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Engine)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CylinderCapacity)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Brake)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Wheels)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Product)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Weight)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Engine)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CylinderCapacity)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Brake)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Wheels)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Product.Name)
+                        </td>
+                        <td>
+                            <partial name="_TableButtonPartial" model="item.Id" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+
+

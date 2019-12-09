@@ -1,0 +1,98 @@
+﻿@model CarShop.Models.ViewModel.ProductViewModel
+@using CarShop.Extensions
+@{
+    ViewData["Title"] = "Delete";
+}
+
+    <div class="container-fluid-0 m-5" style="padding-top:50px;">
+        <h2 class="text-info">Delete Product</h2>
+        @*Enctype là một loại mã hóa cho phép các tệp được gửi qua POST*@
+        <form method="post" enctype="multipart/form-data">
+            <div class="p-4 border rounded row">
+                <input hidden asp-for="Product.Id">
+                @*Tuỳ chọn này hiển thị chỉ các lỗi liên quan đến validation mức Model.*@
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class=" col-8">
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Product.Name"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.Name" readonly class="form-control" />
+                        </div>
+
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Product.Price"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.Price" readonly class="form-control" />
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="ProductTypes"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.ProductTypes.Name" readonly class="form-control" />
+                        </div>
+
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="SpectialTags"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.SpectialTag.Name" readonly class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Product.ShadeColor"></label>
+                        </div>
+                        <div class="col-8">
+                            <input asp-for="Product.ShadeColor" readonly class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="col-4">
+                            <label asp-for="Product.Available"></label>
+                        </div>
+                        <div class="col-8">
+                            <input type="checkbox" readonly asp-for="Product.Available" class="form-control" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class=" col-1"></div>
+                <div class="col-3">
+                    <img src="@Model.Product.Image" width="100%" style="border-radius:5px ; border:1px solid #bbb9b9;" />
+                </div>
+
+                <br />
+
+                <div class="form-group">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                    <a asp-action="Index" class="btn btn-success">Back to List</a>
+                </div>
+            </div>
+        </form>
+    </div>
+       
+        @section Scripts{
+            @{
+                await Html.RenderPartialAsync("_ValidationScriptsPartial");
+            }
+
+        }
